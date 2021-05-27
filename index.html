@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  
+</head>
+<body>
+  <div id="content">Pending</div>
+  <button onclick="invokeTruecaller()">Click me</button>
+  <script>
+    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+
+    function generateString(length) {
+      let result = '';
+      const charactersLength = characters.length;
+      for ( let i = 0; i < length; i++ ) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      }
+      return result;
+    }
+    const requestNonce = generateString(60);
+    const partnerKey = 'xjXaOc567471c4f3a4198a864b5c5f7f60d4f';
+    const truecallerDeeplink = `truecallersdk://truesdk/web_verify?type=btmsheet&requestNonce=${requestNonce.trim()}&partnerKey=${partnerKey}&partnerName=Instamojo&lang=en&privacyUrl=${encodeURIComponent("https://www.instamojo.com/company/privacy/")}&termsUrl=${encodeURIComponent("https://www.instamojo.com/company/terms/")}&loginPrefix=getstarted&loginSuffix=verifymobile&ctaPrefix=use&ctaColor=%234e4e91&btnShape=round&skipOption=useanothermethod`
+    const truecallerDeeplinkAlt = `android-app://com.truecallersdk.android/truecallersdk/truesdk/web_verify?type=btmsheet&requestNonce=${requestNonce.trim()}&partnerKey=${partnerKey}&partnerName=Instamojo&lang=en&privacyUrl=${encodeURIComponent("https://www.instamojo.com/company/privacy/")}&termsUrl=${encodeURIComponent("https://www.instamojo.com/company/terms/")}&loginPrefix=getstarted&loginSuffix=verifymobile&ctaPrefix=use&ctaColor=%234e4e91&btnShape=round&skipOption=useanothermethod`
+  
+      // window.location = "http://google.com";
+    function invokeTruecaller() {
+      setTimeout(function() {
+        const d = document.getElementById("content")
+        if(document.hasFocus() ){
+          d.innerText =  "Truecaller Not Found"
+        }else{
+          d.innerText = "Truecaller Found"
+        }
+      }, 600);
+      window.location = truecallerDeeplink;
+    }
+
+//    invokeTruecaller();
+  </script>
+</body>
+</html>
